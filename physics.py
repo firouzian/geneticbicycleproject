@@ -4,6 +4,8 @@
 # w1[mass,x,y,r,v,a,f]
 # w2[mass,x,y,v,r,a,f]
 #and for par1,2 the r is zero
+
+################## start by free fall ############
 import numpy as np 
 
 
@@ -33,3 +35,16 @@ print par2
 print W1
 print W2
 
+########################### secend compute the evolotion##############
+
+while (par1[2]!=0 or par2[2]!=0):
+    
+    i=0
+    
+    fdpar1=(0,sqrt((par1[1]-par2[1])**2+(par1[2]-par2[2])**2),sqrt((par1[1]-W1[1])**2+(par1[2]-W1[2])**2),sqrt((par1[1]-W2[1])**2+(par1[2]-W2[2])**2))
+
+fdpar2=(sqrt((par1[1]-par2[1])**2+(par1[2]-par2[2])**2),0,sqrt((par2[1]-W1[1])**2+(par2[2]-W1[2])**2),sqrt((par2[1]-W2[1])**2+(par2[2]-W2[2])**2))
+
+print fdpar1
+
+print fdpar2
