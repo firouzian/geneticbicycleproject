@@ -1,7 +1,8 @@
 # geneticbicycleproject
 we are trying to make a genetic-bicycle.
 the user  must inter:
-2 mass for particle in gram
-2 mass for wheel in gram
-2 position for paricle
-2 position of center 
+
+
+4 list: 2 for particles and 2 for wheels that each one contain [mass(gram),X,Y,r(for particls=0),v,a,F]
+
+
