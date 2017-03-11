@@ -1,7 +1,12 @@
+# for define the parameter we use ths pattern:
+# par1[mass,x,y,r,v,a,f]
+# par2[mass,x,v,r,v,a,f]
+# w1[mass,x,y,r,v,a,f]
+# w2[mass,x,y,v,r,a,f]
+#and for par1,2 the r is zero
 import numpy as np 
 
 
-#par=[Mass,X,Y,r,v,a,F]
 par1=[1,2,55,4,0,6,7]
 par2=[1,18,56,2,5,6,7]
 W1=[5,6,7,1,2,3,4]
@@ -27,3 +32,4 @@ print par1
 print par2
 print W1
 print W2
+
