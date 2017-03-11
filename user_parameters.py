@@ -17,4 +17,3 @@ class UserParameters(object):
         self.x_max = x_max
         self.y_max = y_max
         self.SC_max = SC_max
-         
