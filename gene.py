@@ -4,7 +4,7 @@
 
 class Gene(object):
 	"""Station class"""
-     def __init__(self, M1_x, M1_y, M2_x, M2_y, W1_x, W1_y, W2_x, W2_y, SC, d):
+     def __init__(self, M1_x, M1_y, M2_x, M2_y, W1_x, W1_y, W2_x, W2_y, SC, d=0):
          self.M1_x = M1_x
          self.M1_y = M1_y  
          self.M2_x = M2_x  
