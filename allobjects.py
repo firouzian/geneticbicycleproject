@@ -2,6 +2,9 @@ import wheel
 import ground
 import particle
 
+#in this class define all object needed: wheel- particle-spring and ground
+# at this class define update the position and velocity and claculate force
+
 class AllObjects(object):
     def __init__(self):
         print "AllObjects"
