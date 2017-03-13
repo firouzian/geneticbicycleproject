@@ -10,6 +10,9 @@ from user_parameters import User_Parameters
 # Defines a function that creates a list of n random genes
 #   Those genes are restrected some ranges defined by the user
 def Create_Genelist(num,UP):
+    '''
+    Create a list of Random Genes.
+    '''
     GL=[]
     for i in range(num):
         rand_M1_x=rd.uniform(UP.x_min,UP.x_max)
@@ -25,3 +28,122 @@ def Create_Genelist(num,UP):
         GL.append(Gene(rand_M1_x,rand_M1_y,rand_M2_x,rand_M2_y,rand_W1_x,rand_W1_y,rand_W2_x,rand_W2_y,SC,d))            
     return GL
     
+    
+def Evolve_Genes(genelist,EP,UP):
+    '''
+    Evolves a genelist into a new generation based on fitness score d.
+    '''
+    new_genelist=[]
+    d_sum=0
+    
+    # Gets the overall fitness of the entire genelist for then choose parents based on this
+    for gen in genelist:
+        d_sum+=gen.d
+    
+    # Selecting Parents
+
+    for i in range(len(genelist)):
+        r=rd.uniform(0,d_sum)
+        temp_sum=0
+        j=0
+        
+        # The chance of being selected is the fitness of the gene [d] divided the total sum [d_sum]
+        while (temp_sum<r):
+            parent_1=j            
+            temp_sum+=genelist[j].d
+            j+=1
+            
+        # Repeat all the procces to select second parent, but not allowing to select the same gene again      
+        parent_2=parent_1 # Set this to enter the while loop
+        while parent_1 == parent_2:
+            r=rd.uniform(0,d_sum)
+            temp_sum=0
+            j=0
+            while (temp_sum<r):
+                parent_2=j            
+                temp_sum+=genelist[j].d
+                j+=1           
+                
+        # Merging the genes to make new generation.
+                
+        # Each new parameter is choosen in a range determined by the parameters of their parents.
+        # The reange is set by the evolution parameters 
+                # (must excede the limits of the parents to prevent shrinking in the parameter space)
+        
+        max_val = max(genelist[parent_1].M1_x,genelist[parent_2].M1_x)
+        min_val = min(genelist[parent_1].M1_x,genelist[parent_2].M1_x)
+        extra=(max_val-min_val)*(EP.merge_range)
+        new_M1_x=rd.uniform(min_val-extra,max_val+extra)
+        # Now we roll the dice of mutation
+        if (rd.uniform(0,1)<EP.mutability):
+            new_M1_x=rd.uniform(UP.x_min,UP.x_max)
+        
+        # Repeat the same process for all the parameters
+        
+        max_val = max(genelist[parent_1].M1_y,genelist[parent_2].M1_y)
+        min_val = min(genelist[parent_1].M1_y,genelist[parent_2].M1_y)
+        extra=(max_val-min_val)*(EP.merge_range)
+        new_M1_y=rd.uniform(min_val-extra,max_val+extra)
+        if (rd.uniform(0,1)<EP.mutability):
+            new_M1_y=rd.uniform(UP.y_min,UP.y_max)
+
+        max_val = max(genelist[parent_1].M2_x,genelist[parent_2].M2_x)
+        min_val = min(genelist[parent_1].M2_x,genelist[parent_2].M2_x)
+        extra=(max_val-min_val)*(EP.merge_range)
+        new_M2_x=rd.uniform(min_val-extra,max_val+extra)
+        if (rd.uniform(0,1)<EP.mutability):
+            new_M2_x=rd.uniform(UP.x_min,UP.x_max)
+        
+        max_val = max(genelist[parent_1].M2_y,genelist[parent_2].M2_y)
+        min_val = min(genelist[parent_1].M2_y,genelist[parent_2].M2_y)
+        extra=(max_val-min_val)*(EP.merge_range)
+        new_M2_y=rd.uniform(min_val-extra,max_val+extra)
+        if (rd.uniform(0,1)<EP.mutability):
+            new_M2_y=rd.uniform(UP.y_min,UP.y_max)
+
+        max_val = max(genelist[parent_1].W1_x,genelist[parent_2].W1_x)
+        min_val = min(genelist[parent_1].W1_x,genelist[parent_2].W1_x)
+        extra=(max_val-min_val)*(EP.merge_range)
+        new_W1_x=rd.uniform(min_val-extra,max_val+extra)
+        if (rd.uniform(0,1)<EP.mutability):
+            new_W1_x=rd.uniform(UP.x_min,UP.x_max)
+        
+        max_val = max(genelist[parent_1].W1_y,genelist[parent_2].W1_y)
+        min_val = min(genelist[parent_1].W1_y,genelist[parent_2].W1_y)
+        extra=(max_val-min_val)*(EP.merge_range)
+        new_W1_y=rd.uniform(min_val-extra,max_val+extra)
+        if (rd.uniform(0,1)<EP.mutability):
+            new_W1_y=rd.uniform(UP.y_min,UP.y_max)
+            
+        max_val = max(genelist[parent_1].W2_x,genelist[parent_2].W2_x)
+        min_val = min(genelist[parent_1].W2_x,genelist[parent_2].W2_x)
+        extra=(max_val-min_val)*(EP.merge_range)
+        new_W2_x=rd.uniform(min_val-extra,max_val+extra)
+        if (rd.uniform(0,1)<EP.mutability):
+            new_W2_x=rd.uniform(UP.x_min,UP.x_max)
+        
+        max_val = max(genelist[parent_1].W2_y,genelist[parent_2].W2_y)
+        min_val = min(genelist[parent_1].W2_y,genelist[parent_2].W2_y)
+        extra=(max_val-min_val)*(EP.merge_range)
+        new_W2_y=rd.uniform(min_val-extra,max_val+extra)
+        if (rd.uniform(0,1)<EP.mutability):
+            new_W2_y=rd.uniform(UP.y_min,UP.y_max)
+            
+        max_val = max(genelist[parent_1].SC,genelist[parent_2].SC)
+        min_val = min(genelist[parent_1].SC,genelist[parent_2].SC)
+        extra=(max_val-min_val)*(EP.merge_range)
+        new_SC=rd.uniform(min_val-extra,max_val+extra)
+        if (rd.uniform(0,1)<EP.mutability):
+            new_SC=rd.uniform(0,UP.SC_max)
+            
+        # Set the fitness parameter to zero and generate the new generation gene            
+        new_d=0
+        new_genelist.append(Gene(new_M1_x,new_M1_y,new_M2_x,new_M2_y,new_W1_x,new_W1_y,new_W2_x,new_W2_y,new_SC,new_d))
+        
+    return new_genelist
+
+# Just a test function to check the algorithm    
+def test_function(gen,UP):
+    dummy=10-abs(5-gen.M1_x)
+    return dummy
+        

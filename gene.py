@@ -3,7 +3,7 @@
 # Is a class that contain all the information of a bicycle gene (parameters that can evolve)
 
 class Gene(object):
-    """Station class"""
+    '''Station class.'''
     def __init__(self, M1_x, M1_y, M2_x, M2_y, W1_x, W1_y, W2_x, W2_y, SC, d=0):
         self.M1_x = M1_x
         self.M1_y = M1_y  
@@ -21,9 +21,9 @@ class Gene(object):
 # that contain the information of the range in wich genes are considered Good Genes 
 
     def is_good(self,UP):
-
-        """Gene check Function"""
-
+        '''
+        Gene check Function.
+        '''
         x_check = (UP.x_min < self.M1_x < UP.x_max ) and (UP.x_min < self.M2_x < UP.x_max ) and (UP.x_min < self.W1_x < UP.x_max )and (UP.x_min < self.W2_x < UP.x_max) 
         y_check = (UP.y_min < self.M1_y < UP.y_max ) and (UP.y_min < self.M2_y < UP.y_max ) and (UP.y_min < self.W1_y < UP.y_max )and (UP.y_min < self.W2_y < UP.y_max) 
         SC_check = self.SC < UP.SC_max        
