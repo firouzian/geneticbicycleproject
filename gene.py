@@ -5,6 +5,7 @@
 class Gene(object):
     '''Station class.'''
     def __init__(self, M1_x, M1_y, M2_x, M2_y, W1_x, W1_y, W2_x, W2_y, SC, d=0):
+        # Box in wich the bicycle can appear in the first generation of genes
         self.M1_x = M1_x
         self.M1_y = M1_y  
         self.M2_x = M2_x  
@@ -13,7 +14,9 @@ class Gene(object):
         self.W1_y = W1_y
         self.W2_x = W2_x
         self.W2_y = W2_y
-        self.SC = SC   
+        # Max value of the Spring Constant for the first generation of genes 
+        self.SC = SC
+        # Fitness Parameter: Distance that this bicycle (gen) achive
         self.d = d  
          
          
@@ -22,7 +25,7 @@ class Gene(object):
 
     def is_good(self,UP):
         '''
-        Gene check Function.
+        Checks if a gene respects users boundarys.
         '''
         x_check = (UP.x_min < self.M1_x < UP.x_max ) and (UP.x_min < self.M2_x < UP.x_max ) and (UP.x_min < self.W1_x < UP.x_max )and (UP.x_min < self.W2_x < UP.x_max) 
         y_check = (UP.y_min < self.M1_y < UP.y_max ) and (UP.y_min < self.M2_y < UP.y_max ) and (UP.y_min < self.W1_y < UP.y_max )and (UP.y_min < self.W2_y < UP.y_max) 

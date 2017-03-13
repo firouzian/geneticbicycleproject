@@ -40,7 +40,7 @@ def Evolve_Genes(genelist,EP,UP):
     for gen in genelist:
         d_sum+=gen.d
     
-    # Selecting Parents
+    # --------Selecting Parents for each member of the new generation----------
 
     for i in range(len(genelist)):
         r=rd.uniform(0,d_sum)
@@ -55,7 +55,7 @@ def Evolve_Genes(genelist,EP,UP):
             
         # Repeat all the procces to select second parent, but not allowing to select the same gene again      
         parent_2=parent_1 # Set this to enter the while loop
-        while parent_1 == parent_2:
+        while parent_1 == parent_2: # Leaves the loop when the new gene has to differents parents
             r=rd.uniform(0,d_sum)
             temp_sum=0
             j=0
@@ -64,7 +64,7 @@ def Evolve_Genes(genelist,EP,UP):
                 temp_sum+=genelist[j].d
                 j+=1           
                 
-        # Merging the genes to make new generation.
+        # ------------Merging the genes to make new generation.----------------
                 
         # Each new parameter is choosen in a range determined by the parameters of their parents.
         # The reange is set by the evolution parameters 
@@ -79,7 +79,7 @@ def Evolve_Genes(genelist,EP,UP):
             # If works, we move a random amount around the previos value
             new_M1_x+=rd.uniform(UP.x_min,UP.x_max)-(0.5*abs(UP.x_max-UP.x_min))
         
-        # Repeat the same process for all the parameters
+        # --------Repeat the same process for all the parameters---------------
         
         max_val = max(genelist[parent_1].M1_y,genelist[parent_2].M1_y)
         min_val = min(genelist[parent_1].M1_y,genelist[parent_2].M1_y)
@@ -143,8 +143,12 @@ def Evolve_Genes(genelist,EP,UP):
         
     return new_genelist
 
-# Just a test function to check the algorithm    
+
+
 def test_function(gen,UP):
+    '''
+    Just a test function to check the algorithm is working fine.
+    '''
     dummy=100-abs(5-gen.M1_x)-abs(5-gen.M1_y)-abs(5-gen.M2_x)-abs(5-gen.M2_y)-abs(5-gen.W1_x)-abs(5-gen.W1_y)-abs(5-gen.W2_x)-abs(5-gen.W2_y)-abs(25-gen.SC)
     return dummy
         
