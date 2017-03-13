@@ -3,20 +3,27 @@
 # Is a class that contain all the information of a bicycle gene (parameters that can evolve)
 
 class Gene(object):
-    '''Station class.'''
+    '''
+    Gene class contains all the parameters that define the shape of a certain bicylce. 
+    It also contains the distance that bicycle is able to achive during the physics test
+    '''
     def __init__(self, M1_x, M1_y, M2_x, M2_y, W1_x, W1_y, W2_x, W2_y, SC, d=0):
-        # Box in wich the bicycle can appear in the first generation of genes
+        # Psoitions of all the parts of the bicycle
+        # Mass1 Position
         self.M1_x = M1_x
-        self.M1_y = M1_y  
-        self.M2_x = M2_x  
-        self.M2_y = M2_y
+        self.M1_y = M1_y 
+        # Mass2 Position
+        self.M2_x = M2_x 
+        self.M2_y = M2_y 
+        # Wheel1 Position       
         self.W1_x = W1_x
         self.W1_y = W1_y
+        # Wheel2 Position
         self.W2_x = W2_x
         self.W2_y = W2_y
-        # Max value of the Spring Constant for the first generation of genes 
+        # Value of the Spring Constant 
         self.SC = SC
-        # Fitness Parameter: Distance that this bicycle (gen) achive
+        # Fitness Parameter: Distance that this bicycle (gen) is able to achive during the physic simulation
         self.d = d  
          
          

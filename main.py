@@ -39,7 +39,7 @@ EP=Evolution_Parameters(merge_range,mutability,num_genes,num_generations)
 Genes=Genetics.Create_Genelist(EP,UP)
 
 
-# ------ TEST ---------
+# -------------------------- TEST TEST TEST --------------------------------
 
 
 # Testing the algorithm, all M1_x parameters should aproach number 5
