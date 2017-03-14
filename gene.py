@@ -27,6 +27,8 @@ class Gene(object):
         self.d = d  
          
          
+# ----------NOT USED------------------------        
+         
 # This function take as an imput the User Settings (another class of the program)
 # that contain the information of the range in wich genes are considered Good Genes 
 

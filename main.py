@@ -1,4 +1,5 @@
 import Genetics
+import matplotlib.pyplot as plt
 #from Genetics import Create_Genelist
 from gene import Gene
 from user_parameters import User_Parameters
@@ -23,13 +24,13 @@ UP=User_Parameters(x_min, y_min, x_max, y_max, SC_max)
 # -----------------Set the Evolution Parameters----------------------------
 
 # Total number of bicycles (genes) in each generation
-num_genes = 200
+num_genes = 300
 # Number of generation we want to evolve
-num_generations = 1000
+num_generations = 40
 # Range in wich new generation can ecxeed the parents parameters
-merge_range=0.02
+merge_range=0.05
 # Chance of mutation
-mutability=0.001
+mutability=0.005
  
 EP=Evolution_Parameters(merge_range,mutability,num_genes,num_generations)
 
@@ -60,10 +61,18 @@ print (Genes[rand_bike].W2_y)
 print (Genes[rand_bike].SC)
 print()
 
+mean_d=[]
+max_d=[]
 for i in range(EP.num_generations):
+    d_list=np.zeros(len(Genes))
+    i = 0
     for gen in Genes:
         # Testing the fitness of each bicycle (gen)
         gen.d=Genetics.test_function(gen,UP)
+        d_list[i]=gen.d
+        i+=1
+    mean_d.append(np.mean(d_list))
+    max_d.append(np.max(d_list))    
     # Evolve the whole population (list of genes) to create a new generation (list) of bicycles (genes)
     Genes=Genetics.Evolve_Genes(Genes,EP,UP)
     
@@ -79,3 +88,5 @@ print (Genes[rand_bike].W2_x)
 print (Genes[rand_bike].W2_y)
 print (Genes[rand_bike].SC)
 print()
+
+plt.plot(range(len(max_d)),max_d,range(len(max_d)),mean_d)
