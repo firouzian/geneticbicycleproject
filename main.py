@@ -18,8 +18,11 @@ x_max = 10
 y_max = 10
 # Max value of the Spring Constant for the first generation of genes 
 SC_max = 50
+# Parameters for the Ground in wich the bicycle will move
+amplitude = 1
+slope = -0.2
 
-UP=User_Parameters(x_min, y_min, x_max, y_max, SC_max)
+UP=User_Parameters(x_min, y_min, x_max, y_max, SC_max,amplitude,slope)
 
 # -----------------Set the Evolution Parameters----------------------------
 
