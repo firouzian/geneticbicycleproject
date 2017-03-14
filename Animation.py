@@ -23,7 +23,7 @@ y_max = 10
 # Max value of the Spring Constant for the first generation of genes 
 SC_max = 50
 # Parameters for the Ground in wich the bicycle will move
-amplitude = 0.2
+amplitude = 0
 slope = -0.1
 
 UP=User_Parameters(x_min, y_min, x_max, y_max, SC_max,amplitude,slope)
@@ -41,6 +41,7 @@ for line in f:
     i+=1
 f.close()
 
+
 # Each line refers to the coordinate of a certain object
 M1_x = all_file[0]
 M1_y = all_file[1]
@@ -51,6 +52,7 @@ W1_y = all_file[5]
 W2_x = all_file[6]
 W2_y = all_file[7]
 
+
 # Create the Ground in wich the Bicycle will move
 GR = Create_Ground(UP)
 GR_x = []
@@ -58,7 +60,8 @@ GR_y = []
 for l in range(len(GR)):
     GR_x.append(GR[l][0])
     GR_y.append(GR[l][1])
-    
+
+
 # Initialize the figure and all the graphics in it 
 fig, ax = plt.subplots()
 ax.set_xlim(-2, 20)
@@ -72,8 +75,8 @@ line, = ax.plot([], [], '-', lw=2, alpha=0.9)
 line2, = ax.plot([], [], '-', lw=4, c='black', alpha=1)
 
 
+# Back Image (IT CAN BE CHANGED)
 img = imread('image.png')
-
 
 
 # We define the state of the graph for given [i] value
@@ -94,11 +97,12 @@ def animate(i):
     
     return scat, line, line2
 
-# print np.arange(1,len(M1_x))
 
 # Animation function iterates over [i] and refresh the screen with a different scatter plot
 # after a given interval of time
 fig.ani = animation.FuncAnimation(fig, animate, np.arange(1, len(M1_x)),interval=50, blit=False)
 
+
+# Show the back image and the animation over it
 plt.imshow(img, zorder=0, extent=[-2, 20, -5, 2], alpha=0.7)
 plt.show()

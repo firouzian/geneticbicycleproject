@@ -150,5 +150,5 @@ def test_function(gen,UP):
     Just a test function to check the algorithm is working fine.
     '''
     dummy=100-abs(5-gen.M1_x)-abs(5-gen.M1_y)-abs(5-gen.M2_x)-abs(5-gen.M2_y)-abs(5-gen.W1_x)-abs(5-gen.W1_y)-abs(5-gen.W2_x)-abs(5-gen.W2_y)-abs(25-gen.SC)
-    return dummy
+    return [dummy,[1,2,3,4],[10,20,30,40],[1,2,3,4],[10,20,30,40],[1,2,3,4],[10,20,30,40],[1,2,3,4],[10,20,30,40],[1,2,3,4]]
         
