@@ -4,6 +4,8 @@ import allobjects as aob
 import numpy as np
 import itertools as it
 import matplotlib.pyplot as plt
+import pandas as pd
+
 
 
 plt.axis([-10,10,0,30])
@@ -45,6 +47,12 @@ a.make_ground()
 
 a.set_springs() # assigns the rest distances of strings
 
+datafile_path = "/home/manzoor/geneticbicycleproject/w.txt"
+
+datafile_id = open(datafile_path, 'w+')
+
+master=(np.array([0,0,0,0,0,0,0,0])).reshape((-1, 1))
+
 for i in range (t_steps):
     a.update()
     
@@ -70,9 +78,18 @@ for i in range (t_steps):
         plt.scatter(x2,y2)
         plt.scatter(x3,y3)
         plt.scatter(x4,y4)  
-                     
+        
         plt.pause(0.01)
+
         
+        xarray = np.array([x1,y1,x2,y2,x3,y3,x4,y4])
+        #     master.array=np.concatinate
+        #data = xarray.transpose
+        data = xarray .reshape((-1, 1))
+        print data     
+        master= np.concatenate((master,data))
+	np.savetxt(datafile_id, master, fmt=['%d'])
         
-        
+        #  pd.DataFrame.from_items('t',[x1,y1,x2,y2,x3,y3,x4,y4])
+      
 plt.show(block=False)
