@@ -4,6 +4,9 @@ import wheel
 #import ground
 
 
+#in this class define all object needed: wheel- particle-spring and ground
+# at this class define update the position and velocity and claculate force
+
 class AllObjects(object):
     def __init__(self):
         print "AllObjects"
@@ -97,15 +100,4 @@ class AllObjects(object):
         
     def print_wheel(self,i):
         print self.wheel_list[i].position
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
         
-    

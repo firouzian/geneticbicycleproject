@@ -1,5 +1,10 @@
 #!/usr/bin/env python
+
 import numpy as np 
+
+# in this class defined wheel property:mass,position,radius,velocity
+# and the particle considered as wheel with zero radius
+
 class Wheel():
     def __init__ (self, m=1.0,position=[1.0,1.0],radius=1.0,velocity=[0.0,0.0]):
         print 'wheel is created'
