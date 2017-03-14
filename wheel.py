@@ -6,7 +6,7 @@ import numpy as np
 # and the particle considered as wheel with zero radius
 
 class Wheel():
-    def __init__ (self, m=1.0,position=[1.0,1.0],radius=1.0,velocity=[0.0,0.0]):
+    def __init__ (self, m=1.0,position=[1.0,1.0],radius=1.0,torque=0,velocity=[0.0,0.0]):
         print 'wheel is created'
         self.mass = m
         self.position =np.array(position,float)
@@ -14,6 +14,7 @@ class Wheel():
         self.velocity = np.array(velocity,float)
         self.acceleration = np.array([0.,0.],float)
         self.force = np.array([0.,0.],float)
+        self.torque = torque
 		
 	def __str__ (self):
 		print self.mass,self.position,self.radius,self.velocity
