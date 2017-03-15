@@ -18,8 +18,8 @@ import matplotlib.cbook as cbook
 # Box in wich the bicycle can appear in the first generation of genes
 x_min = 0
 y_min = 0
-x_max = 10
-y_max = 10
+x_max = 50
+y_max = 50
 # Max value of the Spring Constant for the first generation of genes 
 SC_max = 50
 # Parameters for the Ground in wich the bicycle will move
@@ -54,19 +54,21 @@ W2_y = all_file[7]
 
 
 # Create the Ground in wich the Bicycle will move
+gg =[(-10.0,5.0),(10.0,0.0),(30.0,5.0),(50.-5,0)]
 GR = Create_Ground(UP)
-GR_x = []
-GR_y = []
-for l in range(len(GR)):
-    GR_x.append(GR[l][0])
-    GR_y.append(GR[l][1])
+GR_x = [-10.,10.,30.0,50.0]
+GR_y = [5.0,0.0,5.0,-5.0]
+#for l in range(len(GR)):
+#    GR_x.append(GR[l][0])
+#    GR_y.append(GR[l][1])
+
 
 
 # Initialize the figure and all the graphics in it 
 fig, ax = plt.subplots()
-ax.set_xlim(-2, 20)
+ax.set_xlim(0.0, 50.0)
 ax.set_xlabel('Distance: d')
-ax.set_ylim(-5, 2), ax.set_yticks([])
+ax.set_ylim(0.0, 20.0), ax.set_yticks([])
 # A scatter for the differents objects
 scat = ax.scatter([],[], c = ('black','black','grey','grey'), alpha=0.9)
 # A line for the springs
@@ -90,7 +92,7 @@ def animate(i):
     thisx = [M1_x[i], M2_x[i], W1_x[i], W2_x[i]]
     thisy = [M1_y[i], M2_y[i], W1_y[i], W2_y[i]]
     scat.set_offsets(np.column_stack((thisx, thisy))) 
-    scat.set_sizes(np.asarray([150.,150.,1500.,1500.]))
+    scat.set_sizes(np.asarray([150.,150.,9000.,9000.]))
     
     # Defines the values of the line plot for ground    
     line2.set_data(GR_x, GR_y)
@@ -104,5 +106,7 @@ fig.ani = animation.FuncAnimation(fig, animate, np.arange(1, len(M1_x)),interval
 
 
 # Show the back image and the animation over it
-plt.imshow(img, zorder=0, extent=[-2, 20, -5, 2], alpha=0.7)
+
+
+plt.imshow(img, zorder=0, extent=[-0, 50, 0, 20], alpha=0.7)
 plt.show()
