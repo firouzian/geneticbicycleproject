@@ -61,10 +61,10 @@ def run_all (gene, UP):
         t = t_i+i*dt
         if a.ground_hit:
             dist = a.wheel_list[0].position[0] - initial_position
-            return dist, gene
+            return dist
 
     dist = a.wheel_list[0].position[0] - initial_position
-    return dist, gene
+    return dist
 
 ##-------------------------------------
 ##-------------------------------------
@@ -116,6 +116,14 @@ if __name__ == '__main__':
     a.set_springs() # assigns the rest distances of strings
 
     initial_position = a.wheel_list[0].position[0]
+    l_M1_x = []
+    l_M1_y = []
+    l_W1_x = []
+    l_W1_y = []
+    l_M2_x = []
+    l_M2_y = []
+    l_W2_x = []
+    l_W2_y = []
 
     for i in range (t_steps):
         a.update()
@@ -137,6 +145,19 @@ if __name__ == '__main__':
         
             y4 = a.wheel_list[3].position[1]
             x4 = a.wheel_list[3].position[0]
+
+            l_W1_x.append(x1)
+            l_W1_y.append(y1)
+
+            l_W2_x.append(x3)
+            l_W2_y.append(y3)
+
+            l_M1_x.append(x2)
+            l_M1_y.append(y2)
+
+            l_M2_x.append(x4)
+            l_M2_y.append(y4)
+
             #plt.scatter(t,y1)
             #plt.scatter(t,y2)
 
@@ -152,3 +173,28 @@ if __name__ == '__main__':
         
         
     plt.show(block=False)
+
+    with open("Positions.txt","w") as out:
+        for i in l_M1_x:
+            out.write('%s\t'%i)
+        out.write('\n')
+        for i in l_M1_y:
+            out.write('%s\t'%i)
+        out.write('\n')
+        for i in l_M2_x:
+            out.write('%s\t'%i)
+        out.write('\n')
+        for i in l_M2_y:
+            out.write('%s\t'%i)
+        out.write('\n')
+        for i in l_W1_x:
+            out.write('%s\t'%i)
+        out.write('\n')
+        for i in l_W1_y:
+            out.write('%s\t'%i)
+        out.write('\n')
+        for i in l_W2_x:
+            out.write('%s\t'%i)
+        out.write('\n')
+        for i in l_W2_y:
+            out.write('%s\t'%i)
