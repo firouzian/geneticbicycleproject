@@ -7,7 +7,7 @@ import wheel
 # at this class define update the position and velocity and claculate force
 
 class AllObjects(object):
-    def __init__(self,ground=[(-10.0,5.0),(10.0,0.0),(50.0,5.0)]):
+    def __init__(self,ground=[(-10.0,5.0),(10.0,0.0),(30.0,5.0),(50.-5,0)]):
         print "AllObjects"
         self.wheel_list = []
         self.spring_list = {}
@@ -92,10 +92,10 @@ class AllObjects(object):
                 p_l = gr[j] - (r_i * vec2)
                 p_r = gr[j+1] + (r_i * vec2)
 
-                dis_x  = np.linalg.norm (p_x - p_l)
-                dis_j0 = np.linalg.norm (gr[j] - p_l)
-                dis_j1 = np.linalg.norm (gr[j+1] - p_l)
-                dis_j2 = np.linalg.norm (p_r - p_l)
+                dis_x  = np.dot (vec2, p_x - p_l)
+                dis_j0 = np.dot (vec2, gr[j] - p_l)
+                dis_j1 = np.dot (vec2, gr[j+1] - p_l)
+                dis_j2 = np.dot (vec2, p_r - p_l)
 
                 xi = 0
                 if 0.0 < dis_x and dis_x <= dis_j0:
@@ -114,6 +114,7 @@ class AllObjects(object):
                     w_i.add_force (force)
                     if r_i == 0:
                         self.ground_hit = True
+
 
                 
     def calc_flat_ground_force (self):

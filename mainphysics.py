@@ -93,7 +93,7 @@ if __name__ == '__main__':
     rad1  = 3.0
     rad2  = 1.0
 
-    torque1 = 1000.0
+    torque1 = 3000.0
 
     position1 = np.array ([3.,5.],float)
     position2 = np.array ([4.,9.],float)
