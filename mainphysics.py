@@ -6,8 +6,13 @@ import itertools as it
 import matplotlib.pyplot as plt
 import ground
 
+"""
+this is main for physic
+"""
 
 def run_all (gene, UP):
+
+    """ run the bicycle """
 
     t_i = 0.0
     t_f = 10.0
